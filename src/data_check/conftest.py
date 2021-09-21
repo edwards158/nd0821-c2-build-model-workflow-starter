@@ -11,7 +11,7 @@ def pytest_addoption(parser):
     parser.addoption("--max_price", action="store")
 
 
-@pytest.fixture(scope='session')
+@pytest.fixture(scope='session', name='data')
 def data(request):
     run = wandb.init(job_type="data_tests", resume=True)
 
@@ -23,11 +23,12 @@ def data(request):
         pytest.fail("You must provide the --csv option on the command line")
 
     df = pd.read_csv(data_path)
+    # print(df.columns)
 
     return df
 
 
-@pytest.fixture(scope='session')
+@pytest.fixture(scope='session', name='ref_data')
 def ref_data(request):
     run = wandb.init(job_type="data_tests", resume=True)
 
@@ -52,6 +53,7 @@ def kl_threshold(request):
 
     return float(kl_threshold)
 
+
 @pytest.fixture(scope='session')
 def min_price(request):
     min_price = request.config.option.min_price
@@ -60,6 +62,7 @@ def min_price(request):
         pytest.fail("You must provide min_price")
 
     return float(min_price)
+
 
 @pytest.fixture(scope='session')
 def max_price(request):
