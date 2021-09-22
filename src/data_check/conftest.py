@@ -23,7 +23,6 @@ def data(request):
         pytest.fail("You must provide the --csv option on the command line")
 
     df = pd.read_csv(data_path)
-    # print(df.columns)
 
     return df
 

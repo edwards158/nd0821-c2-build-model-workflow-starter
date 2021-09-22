@@ -27,8 +27,6 @@ def test_column_names(data):
 
     these_columns = data.columns.values
 
-    print("hhhh")
-
     #logging.info("length of these is %s", len(these_columns))
 
     # This also enforces the same order
