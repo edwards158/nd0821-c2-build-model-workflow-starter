@@ -81,4 +81,4 @@ def test_price_range(data, min_price, max_price):
     """
     Check price range is between boundaries
     """
-    return data['price'].between(min_price, max_price).all()
+    assert data['price'].between(min_price, max_price).all()
